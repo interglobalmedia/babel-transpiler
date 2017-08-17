@@ -2,6 +2,7 @@ const port = process.envPORT || 3000;
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const TARGET_ENV = process.env.npm_lifecycle_event === 'build' ? 'production' : 'development';
 
 const VENDOR_LIBS = [
@@ -42,10 +43,12 @@ module.exports = {
 				},
 				exclude: /node_modules/
 			},
-			{
-				use: ['style-loader', 'css-loader'],
-				test: /\.css$/
-			},
+			{	test: /\.css$/,
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: 'css-loader'
+				})
+			}
 		]
 	},
 	plugins: [
@@ -55,6 +58,7 @@ module.exports = {
 		new htmlWebpackPlugin({
 			template: 'src/index.html'
 		}),
+		new ExtractTextPlugin('App.css'),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production')
 		})
