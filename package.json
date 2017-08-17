@@ -1,6 +1,5 @@
 {
   "name": "babel-transpiler",
-  "homepage": "https://interglobalmedia.github.io/babel-transpiler/",
   "version": "0.0.1",
   "description": "",
   "main": "src/index.js",
@@ -9,6 +8,10 @@
     "build": "NODE_ENV=production npm run clean && webpack -p",
     "serve": "webpack-dev-server",
     "deploy": "npm run build && git subtree push --prefix dist origin gh-pages"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/interglobalmedia/babel-transpiler.git"
   },
   "author": "Maria D. Campbell",
   "license": "ISC",
