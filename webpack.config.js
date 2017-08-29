@@ -48,19 +48,31 @@ module.exports = {
 					fallback: 'style-loader',
 					use: 'css-loader'
 				})
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg|ico)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: { limit: 40000 }
+					},
+					'image-webpack-loader'
+				]
 			}
 		]
 	},
+	devtool: 'source-map',
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({
 			names: ['vendor', 'manifest']
 		}),
 		new htmlWebpackPlugin({
-			template: 'src/index.html'
+			template: 'src/index.html',
+			favicon: 'src/images/favicon.ico'
 		}),
 		new ExtractTextPlugin('App.css'),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
+			'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 		})
 	]
 };
