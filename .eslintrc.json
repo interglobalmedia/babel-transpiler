@@ -3,27 +3,41 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "node": true
+        "node": true,
+        "jest": true,
+        "serviceworker": true
     },
-    "extends": "eslint:recommended",
+    "settings": {
+        "react": {
+            "pgragma": "React",
+            "version": "16.7"
+        }
+    },
     "parserOptions": {
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
         },
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "import",
+        "react",
+        "prettier"
     ],
     "rules": {
+        "no-underscore-dangle": 0,
+        "max-len": ["off", {
+            "code": 80
+        }],
+        "no-unused-vars": 0,
+        "no-console": 0,
         "indent": [
-            "error",
-            "tab"
+            0
         ],
         "linebreak-style": [
-            "error",
-            "unix"
+            "off",
+            "eol-last"
         ],
         "quotes": [
             0

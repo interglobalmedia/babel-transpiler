@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import '../style/App.css';
 
-class App extends React.Component {
+class App extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -16,11 +16,11 @@ class App extends React.Component {
 		try {
 			this.setState({
 				output: window.Babel
-					.transform(code, {presets: ['es2015', 'react']}).code,
+					.transform(code, { presets: ['es2015', 'react'] }).code,
 				err: ''
 			})
 		}
-		catch(err) {
+		catch (err) {
 			this.setState({
 				err: err.message
 			})
@@ -33,7 +33,7 @@ class App extends React.Component {
 				<div className="container">
 					<textarea
 						onChange={this.update.bind(this)}
-						defaultValue={this.state.input}/>
+						defaultValue={this.state.input} />
 					<pre>{this.state.output}</pre>
 				</div>
 			</div>
